@@ -12,7 +12,8 @@ pipeline {
     }
 
     stages {
-
+            echo username= "${env.USER_NAME}"
+			echo currentbranch= "${env.BRANCH_NAME}"
         stage('Parallel Build') {
             parallel {
 
@@ -23,11 +24,9 @@ pipeline {
                         stage('Checkout') {
                             steps {
 							echo "checkout to Java repo..."
-							echo "${env.USER_NAME}"
-							echo "${env.BRANCH_NAME}"
                                 git(
                                     url: "https://github.com/vhazarathnaidu/java-source.git",
-                                    branch: "feature-ep-01-task-01"
+                                    branch: "${env.BRANCH_NAME}"
                                 )
                             }
                         }
@@ -74,11 +73,10 @@ pipeline {
                         stage('Checkout Python Repo') {
                             steps {
 							echo "checkout to python repo..."
-							echo "${env.USER_NAME}"
-							echo "${env.BRANCH_NAME}"							
+													
                                 git(
                                     url: "https://github.com/vhazarathnaidu/python-source.git",
-                                    branch: "feature-ep-01-task-01"
+                                    branch: "${env.BRANCH_NAME}"
                                 )
                             }
                         }
@@ -109,11 +107,10 @@ pipeline {
                         stage('Checkout Node Repo') {
                             steps {
 							echo "checkout to node repo..."
-							echo "${env.USER_NAME}"
-							echo "${env.BRANCH_NAME}"
+							
                                 git(
                                     url: "https://github.com/vhazarathnaidu/node-source.git",
-                                    branch: "feature-ep-01-task-01"
+                                    branch: "${env.BRANCH_NAME}"
                                 )
                             }
                         }
